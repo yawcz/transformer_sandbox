@@ -1,0 +1,55 @@
+[project]
+name = "transformer_lab"
+version = "26.0.0"
+description = "A Transformer language model built from scratch, with induction-head experiments"
+readme = "README.md"
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "einops>=0.8.2",       # tensor operations
+    "jaxtyping>=0.3.11",   # tensor type annotations
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.3",
+    "regex>=2026.9.10",    # Unicode-aware tokenization patterns
+    "seaborn>=0.13.2",
+    "torch~=2.14.0",
+    "tqdm>=4.70.1",
+    "wandb>=0.30.0",
+]
+
+[dependency-groups]
+dev = [
+    "psutil>=7.2.2",
+    "pytest>=9.1.1",
+    "pytest-timeout>=2.4.0",
+    "ruff>=0.16.9",
+    "tiktoken>=0.14.0",
+    "ty>=0.0.84",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.19,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "transformer_lab"
+module-root = ""
+
+[tool.uv]
+package = true
+python-preference = "managed"
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "WARNING"
+addopts = "-s"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint.extend-per-file-ignores]
+# Also ignore `E402` in all `__init__.py` files.
+"__init__.py" = ["E402", "F401", "F403", "E501"]
+
+[tool.ruff.lint]
+extend-select = ["UP"]
+ignore = ["F722"]
